@@ -1,0 +1,53 @@
+function CountCharactersInString(str,ch) {
+    let sum = 0;
+    for i in str:
+        if str[i] == ch: 
+            sum++;
+    return sum;
+}
+function FindMiddle(length) {
+    if length mod 2 == 1 return length div 2; // abcdf is divided in "abc" and "df"
+    return length div 2 - 1; // "abba" is divided in "ab" and "ba"
+}
+function FindCharactersFromCenter(str,C,m) {
+    //borrow happens in such cases:
+    //string is "abba", m=2. We need to check "bb".
+    //string is "abcba", m=3. We need to check "bcb".
+    if (first case) {
+        count and return;
+    }
+    if (second case) {
+        count and return;
+    }
+    return 0,0 // we don't need to check. The substrings have been
+    //checked by divide and conquer.
+}
+
+function Borrow(originalString,A,m,C) {
+    if (substring contains the first characters) 
+        //borrow only from right side and return count and index
+    if (substring contains the last characters)
+        //borrow only from left side and return
+    //else
+    //substring needs to borrow m - substring.length characters 
+    leftBorrow = //borrow from left
+    rightBorrow = //borrow from right
+    //compare and return
+}
+function FindCharactersInSubstring(originalString,A,startIndex,m,C) {
+    let middle = FindMiddle(A.length);
+    if(A.length == m) {
+        return (CountCharactersInString(A,c),startIndex,0);
+    } 
+    if (A.length < m) {
+        return BorrowCharacters(A,startIndex,m,C);
+    }
+
+    (leftCount,leftIndex) = FindCharactersInSubstring(originalString,A[0,middle],startIndex,m,C);
+    (rightCount,rightIndex) = FindCharactersInSubstring(originalString,A[middle + 1,A.length-1],middle + 1,m,C);
+    (centerCount,centerIndex) = FindCharactersFromCenter(A,C,m);
+
+    if (leftCount >= rightCount && leftCount>=centerCount) return (leftIndex,leftCount);
+    if(rightCount >= leftCount && rightCount >= centerCount) return (rightIndex,rightCount);
+    return (centerIndex,centerCount,0);
+}
